@@ -14,6 +14,7 @@
   "productName": "Structure Viewer Wrapper",
 
   "win": {
+    "icon": "icon.ico",
     "target": [
       "nsis",
       "portable"
@@ -21,13 +22,16 @@
   },
 
   "linux": {
+    "icon": "icon.png",
     "target": [
       "AppImage",
       "deb"
-    ]
+    ],
+    "category": "Utility"
   },
 
   "mac": {
+    "icon": "icon.icns",
     "target": [
       "dmg"
     ]
