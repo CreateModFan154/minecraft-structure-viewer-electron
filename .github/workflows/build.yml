@@ -22,16 +22,31 @@ jobs:
     runs-on: ${{ matrix.os }}
 
     steps:
-      - uses: actions/checkout@v4
+      - name: Checkout repository
+        uses: actions/checkout@v4
 
-      - uses: actions/setup-node@v4
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
         with:
           node-version: 22
           cache: npm
 
-      - run: npm ci
+      - name: Install dependencies
+        run: npm ci
 
-      - name: Build
-        run: npm run build
+      - name: Build Electron app
+        run: |
+          if [[ "${GITHUB_REF}" == refs/tags/* ]]; then
+            npm run build -- --publish always
+          else
+            npm run build -- --publish never
+          fi
+        shell: bash
         env:
           GH_TOKEN: ${{ github.token }}
+
+      - name: Upload build artifacts
+        uses: actions/upload-artifact@v4
+        with:
+          name: Structure-Viewer-${{ matrix.os }}
+          path: dist/
