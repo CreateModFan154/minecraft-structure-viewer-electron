@@ -38,6 +38,11 @@
   }
 },
 
+  "author": {
+  "name": "CreateModFan154",
+  "email": "electron-contact@cmf12.simplelogin.com"
+},
+  
   "devDependencies": {
     "electron": "^43.1.0",
     "electron-builder": "^26.0.0"
